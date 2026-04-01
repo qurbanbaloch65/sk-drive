@@ -4,99 +4,221 @@
 
 <head>
 <meta charset='UTF-8'/>
-<meta content='width=device-width, initial-scale=1.0' name='viewport'/>
-<title>SK DRIVE</title>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+<title>Vibes Soga - Movies</title>
 
-<!-- ================= ADS SCRIPTS ================= -->
-
+<!-- ADS -->
 <script src='//pl25372332.passtechusa.com/2c/80/7e/2c807e60058ec40590a88099238383a8.js'></script>
 
-<script src="https://pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js"></script>
-
-<script src="https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js"></script>
-
-<!-- ================= CSS ================= -->
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
-body{background:#121212;color:#fff;}
-.navbar{padding:15px;background:#1f1f1f;text-align:center;font-weight:bold;color:#e50914;font-size:24px;}
-.container{padding:15px;}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.card{background:#1f1f1f;border-radius:10px;overflow:hidden;border:1px solid #333;}
-.card img{width:100%;height:180px;object-fit:cover;}
-.card-content{padding:10px;text-align:center;}
-.btn{display:block;background:#e50914;padding:10px;margin-top:8px;text-decoration:none;color:#fff;border-radius:5px;font-weight:bold;}
-#downloadPage{display:none;text-align:center;padding:20px;}
-.movie-img{width:250px;border-radius:10px;margin-bottom:15px;}
-.back{margin-bottom:20px;display:inline-block;background:#444;padding:8px 15px;border-radius:5px;cursor:pointer;}
+body{
+  margin:0;
+  font-family:Arial;
+  background:#000000;
+  color:white;
+}
+
+/* HEADER */
+.header{
+  background:#0a0a0a;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  position:sticky;
+  top:0;
+  border-bottom:1px solid #1f1f1f;
+}
+
+.title{
+  font-size:24px;
+  font-weight:bold;
+  color:#b026ff;
+  letter-spacing:1px;
+}
+
+/* SEARCH */
+.search{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  width:100%;
+  background:#111;
+  color:white;
+  outline:none;
+}
+
+/* CATEGORY */
+.categories{
+  display:flex;
+  gap:10px;
+}
+
+.cat-btn{
+  padding:6px 12px;
+  background:#111;
+  border:1px solid #2a2a2a;
+  color:white;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.cat-btn.active{
+  background:#b026ff;
+  border-color:#b026ff;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  padding:10px;
+}
+
+.card{
+  background:#0f0f0f;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #1f1f1f;
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:10px;
+}
+
+.btn{
+  display:block;
+  margin-top:8px;
+  background:#b026ff;
+  color:white;
+  text-align:center;
+  padding:8px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* PAGINATION */
+.pagination{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:15px;
+}
+
+.page-btn{
+  padding:6px 12px;
+  background:#111;
+  border:1px solid #2a2a2a;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.page-btn.active{
+  background:#b026ff;
+  border-color:#b026ff;
+}
 </style>
 
 </head>
 
 <body>
 
-<div class='navbar'>SK DRIVE</div>
+<div class="header">
+  <div class="title">Vibes Soga</div>
 
-<!-- Ads (extra safe placement inside body) -->
-<script src='//pl25372350.passtechusa.com/5c/5f/17/5c5f17849e77b102b415a77038e21782.js'></script>
+  <input class="search" id="searchBox" placeholder="Search movies..." onkeyup="renderMovies()"/>
 
-<div class='container' id='homePage'>
-  <div class='grid'>
-
-    <div class='card'>
-      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlA52gybLs_6aq6paMSt2jaUX3Sj9sUX5wpHfmZtFKKQ&s=10'/>
-      <div class='card-content'>
-        <div>DHURANDHAR</div>
-        <a class='btn' href='#' onclick='openMovie("dhur")'>Download</a>
-      </div>
-    </div>
-
-    <div class='card'>
-      <img src='https://m.media-amazon.com/images/M/MV5BNTdlNTNjNjctYTg2MC00NTFlLTliNTctODFiZjZmNWRkYTVlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'/>
-      <div class='card-content'>
-        <div>PEAKY BLINDERS</div>
-        <a class='btn' href='#' onclick='openMovie("peaky")'>Download</a>
-      </div>
-    </div>
-
+  <div class="categories">
+    <button class="cat-btn active" onclick="setCategory('all')">All</button>
+    <button class="cat-btn" onclick="setCategory('drama')">Drama</button>
+    <button class="cat-btn" onclick="setCategory('action')">Action</button>
   </div>
 </div>
 
-<div id='downloadPage'>
-  <div class='back' onclick='goBack()'>⬅ Back to Home</div>
+<!-- GRID -->
+<div class="grid" id="movieGrid"></div>
 
-  <img class='movie-img' id='movieImg'/>
-  <h2 id='movieTitle' style='margin-bottom:20px;'></h2>
-
-  <p style='color:#aaa;margin-bottom:10px;'>Select Quality to Download:</p>
-
-  <a class='btn' href='https://highrevenuegate.com/v8t4u9v8y?key=7f7813a86c878939b4f620f4f9f6975a' target='_blank'>Download 480p</a>
-  <a class='btn' href='https://highrevenuegate.com/v8t4u9v8y?key=7f7813a86c878939b4f620f4f9f6975a' target='_blank'>Download 720p</a>
-  <a class='btn' href='https://highrevenuegate.com/v8t4u9v8y?key=7f7813a86c878939b4f620f4f9f6975a' target='_blank'>Download 1080p</a>
+<!-- PAGINATION -->
+<div class="pagination">
+  <button class="page-btn" onclick="setPage(1)">1</button>
+  <button class="page-btn" onclick="setPage(2)">2</button>
+  <button class="page-btn" onclick="setPage(3)">3</button>
 </div>
 
 <script>
-// JS unchanged
-function openMovie(movie){
-  document.getElementById("homePage").style.display="none";
-  document.getElementById("downloadPage").style.display="block";
-  window.scrollTo(0,0);
+const smartlink = "https://www.profitablecpmratenetwork.com/m1u9inyw?key=5df91a743298a28a9dfe7f5c4eeb6706";
 
-  if(movie === "dhur"){
-    document.getElementById("movieTitle").innerText="DHURANDHAR THE REVENGE";
-    document.getElementById("movieImg").src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlA52gybLs_6aq6paMSt2jaUX3Sj9sUX5wpHfmZtFKKQ&s=10";
-  }
+let category = "all";
+let page = 1;
 
-  if(movie === "peaky"){
-    document.getElementById("movieTitle").innerText="Peaky Blinders";
-    document.getElementById("movieImg").src="https://m.media-amazon.com/images/M/MV5BNTdlNTNjNjctYTg2MC00NTFlLTliNTctODFiZjZmNWRkYTVlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg";
-  }
+const movies = [
+  {name:"Peaky Blinders", img:"https://m.media-amazon.com/images/M/MV5B.jpg", cat:"action"},
+  {name:"Money Heist", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
+  {name:"Breaking Bad", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
+  {name:"Dark", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
+  {name:"Vikings", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
+  {name:"Narcos", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
+  {name:"Squid Game", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
+  {name:"The Crown", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
+  {name:"Arrow", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
+  {name:"Lost", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
+  {name:"Flash", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
+  {name:"Prison Break", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"}
+];
+
+function renderMovies(){
+  let grid = document.getElementById("movieGrid");
+  let search = document.getElementById("searchBox").value.toLowerCase();
+
+  grid.innerHTML = "";
+
+  let filtered = movies.filter(m => {
+    return (category==="all" || m.cat===category) &&
+           m.name.toLowerCase().includes(search);
+  });
+
+  let start = (page-1)*6;
+  let end = start + 6;
+
+  filtered.slice(start,end).forEach(m => {
+    grid.innerHTML += `
+      <div class="card">
+        <img src="${m.img}">
+        <div class="card-content">
+          <div>${m.name}</div>
+          <a class="btn" href="${smartlink}" target="_blank">Watch / Download</a>
+        </div>
+      </div>
+    `;
+  });
 }
 
-function goBack(){
-  document.getElementById("homePage").style.display="block";
-  document.getElementById("downloadPage").style.display="none";
+function setCategory(cat){
+  category = cat;
+  page = 1;
+  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+  renderMovies();
 }
+
+function setPage(p){
+  page = p;
+  document.querySelectorAll(".page-btn").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+  renderMovies();
+}
+
+renderMovies();
 </script>
 
 </body>
