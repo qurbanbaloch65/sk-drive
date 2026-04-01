@@ -80,15 +80,13 @@ body{
 
   <h3>Episodes</h3>
 
-  <div class="episodes">
-
-    <!-- EPISODE TEMPLATE (EDIT DAILY) -->
-    <div class="ep">
-      <span>Episode coming (Today)</span>
-      <a class="btn" href="YOUR_SMARTLINK_HERE" target="_blank">Watch</a>
-    </div>
-
+  <div class="episodes" id="episodeList">
+    <!-- DATA WILL LOAD FROM SHEET -->
   </div>
+
+</div>
+
+<!-- COPY PROTECTION -->
 <script>
 document.addEventListener("contextmenu", e => e.preventDefault());
 
@@ -102,16 +100,38 @@ document.addEventListener("keydown", function(e){
     e.preventDefault();
   }
 });
+
+document.body.style.userSelect = "none";
 </script>
 
-<style>
-body{
-  -webkit-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
+<!-- GOOGLE SHEET SYSTEM -->
+<script>
+const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
+
+async function loadEpisodes(){
+  try {
+    let res = await fetch(API_URL);
+    let data = await res.json();
+
+    let box = document.getElementById("episodeList");
+    box.innerHTML = "";
+
+    data.forEach(ep => {
+      box.innerHTML += `
+        <div class="ep">
+          <span>${ep.Name}</span>
+          <a class="btn" href="${ep.Link}" target="_blank">Watch</a>
+        </div>
+      `;
+    });
+
+  } catch(err){
+    console.log("Error loading sheet", err);
+  }
 }
-</style>
-</div>
+
+loadEpisodes();
+</script>
 
 </body>
 </html>
