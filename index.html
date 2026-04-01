@@ -58,7 +58,6 @@ body{
   border-radius:6px;
   text-decoration:none;
   font-size:13px;
-  z-index: 100; /* Taake button hamesha ad se upar rahe */
 }
 </style>
 
@@ -126,19 +125,6 @@ async function loadEpisodes(){
 }
 
 loadEpisodes();
-</script>
-
-<script>
-  // Is se Ads 3 seconds baad load honge taake pehle buttons chal jayein
-  setTimeout(function(){
-    var ad1 = document.createElement('script');
-    ad1.src = "https://pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js";
-    document.body.appendChild(ad1);
-
-    var ad2 = document.createElement('script');
-    ad2.src = "https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js";
-    document.body.appendChild(ad2);
-  }, 3000); 
 </script>
 
 </body>
