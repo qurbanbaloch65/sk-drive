@@ -7,6 +7,9 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
 <title>Tum Se Tum Tak - Drama</title>
 
+<script src="https://pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js"></script>
+<script src="https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js"></script>
+
 <style>
 body{
   margin:0;
@@ -83,18 +86,11 @@ body{
 
 <script>
 document.addEventListener("contextmenu", e => e.preventDefault());
-
 document.addEventListener("keydown", function(e){
-  if (e.ctrlKey && (
-      e.key === "u" ||
-      e.key === "s" ||
-      e.key === "i" ||
-      e.key === "j"
-  )){
+  if (e.ctrlKey && (e.key === "u" || e.key === "s" || e.key === "i" || e.key === "j")){
     e.preventDefault();
   }
 });
-
 document.body.style.userSelect = "none";
 </script>
 
@@ -117,6 +113,18 @@ async function loadEpisodes(){
         </div>
       `;
     });
+
+  } catch(err){
+    console.log("Error loading sheet", err);
+    document.getElementById("episodeList").innerHTML = "Error loading episodes.";
+  }
+}
+
+loadEpisodes();
+</script>
+
+</body>
+</html>
 
   } catch(err){
     console.log("Error loading sheet", err);
