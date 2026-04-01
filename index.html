@@ -7,10 +7,6 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
 <title>Tum Se Tum Tak - Drama</title>
 
-<!-- ADS (your links) -->
-<script src="https://pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js"></script>
-<script src="https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js"></script>
-
 <style>
 body{
   margin:0;
@@ -62,6 +58,7 @@ body{
   border-radius:6px;
   text-decoration:none;
   font-size:13px;
+  z-index: 100; /* Taake button hamesha ad se upar rahe */
 }
 </style>
 
@@ -75,18 +72,16 @@ body{
 
 <div class="container">
 
-  <!-- DRAMA POSTER -->
   <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
 
   <h3>Episodes</h3>
 
   <div class="episodes" id="episodeList">
-    <!-- DATA WILL LOAD FROM SHEET -->
+    <p style="text-align:center;">Loading Episodes...</p>
   </div>
 
 </div>
 
-<!-- COPY PROTECTION -->
 <script>
 document.addEventListener("contextmenu", e => e.preventDefault());
 
@@ -104,7 +99,6 @@ document.addEventListener("keydown", function(e){
 document.body.style.userSelect = "none";
 </script>
 
-<!-- GOOGLE SHEET SYSTEM -->
 <script>
 const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
@@ -127,10 +121,24 @@ async function loadEpisodes(){
 
   } catch(err){
     console.log("Error loading sheet", err);
+    document.getElementById("episodeList").innerHTML = "Error loading episodes.";
   }
 }
 
 loadEpisodes();
+</script>
+
+<script>
+  // Is se Ads 3 seconds baad load honge taake pehle buttons chal jayein
+  setTimeout(function(){
+    var ad1 = document.createElement('script');
+    ad1.src = "https://pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js";
+    document.body.appendChild(ad1);
+
+    var ad2 = document.createElement('script');
+    ad2.src = "https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js";
+    document.body.appendChild(ad2);
+  }, 3000); 
 </script>
 
 </body>
