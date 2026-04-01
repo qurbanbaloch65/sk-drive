@@ -89,20 +89,29 @@ body{
     </div>
 
   </div>
-
-</div>
-
-</body>
-</html>
 <script>
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", function(e){
-  if(
-    e.ctrlKey && 
-    (e.key === "u" || e.key === "s" || e.key === "i" || e.key === "j")
-  ){
+  if (e.ctrlKey && (
+      e.key === "u" ||
+      e.key === "s" ||
+      e.key === "i" ||
+      e.key === "j"
+  )){
     e.preventDefault();
   }
 });
 </script>
+
+<style>
+body{
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+</style>
+</div>
+
+</body>
+</html>
