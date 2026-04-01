@@ -5,10 +5,11 @@
 <head>
 <meta charset='UTF-8'/>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-<title>Vibes Soga - Movies</title>
+<title>Tum Se Tum Tak - Drama</title>
 
-<!-- ADS -->
-<script src='//pl25372332.passtechusa.com/2c/80/7e/2c807e60058ec40590a88099238383a8.js'></script>
+<!-- ADS (your links) -->
+<script src="https://pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js"></script>
+<script src="https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js"></script>
 
 <style>
 body{
@@ -18,114 +19,49 @@ body{
   color:white;
 }
 
-/* HEADER */
 .header{
   background:#0a0a0a;
   padding:15px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  position:sticky;
-  top:0;
   border-bottom:1px solid #1f1f1f;
 }
 
 .title{
-  font-size:24px;
+  font-size:22px;
   font-weight:bold;
   color:#b026ff;
-  letter-spacing:1px;
 }
 
-/* SEARCH */
-.search{
+.container{
   padding:10px;
-  border:none;
-  border-radius:8px;
+}
+
+.poster{
   width:100%;
-  background:#111;
-  color:white;
-  outline:none;
-}
-
-/* CATEGORY */
-.categories{
-  display:flex;
-  gap:10px;
-}
-
-.cat-btn{
-  padding:6px 12px;
-  background:#111;
-  border:1px solid #2a2a2a;
-  color:white;
-  border-radius:20px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.cat-btn.active{
-  background:#b026ff;
-  border-color:#b026ff;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  padding:10px;
-}
-
-.card{
-  background:#0f0f0f;
   border-radius:12px;
-  overflow:hidden;
-  border:1px solid #1f1f1f;
 }
 
-.card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
+.episodes{
+  margin-top:15px;
 }
 
-.card-content{
+.ep{
+  background:#111;
   padding:10px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:1px solid #2a2a2a;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .btn{
-  display:block;
-  margin-top:8px;
   background:#b026ff;
   color:white;
-  text-align:center;
-  padding:8px;
+  padding:6px 10px;
   border-radius:6px;
   text-decoration:none;
-  font-weight:bold;
-}
-
-/* PAGINATION */
-.pagination{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  padding:15px;
-}
-
-.page-btn{
-  padding:6px 12px;
-  background:#111;
-  border:1px solid #2a2a2a;
-  color:white;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.page-btn.active{
-  background:#b026ff;
-  border-color:#b026ff;
+  font-size:13px;
 }
 </style>
 
@@ -134,92 +70,47 @@ body{
 <body>
 
 <div class="header">
-  <div class="title">Vibes Soga</div>
+  <div class="title">Tum Se Tum Tak</div>
+</div>
 
-  <input class="search" id="searchBox" placeholder="Search movies..." onkeyup="renderMovies()"/>
+<div class="container">
 
-  <div class="categories">
-    <button class="cat-btn active" onclick="setCategory('all')">All</button>
-    <button class="cat-btn" onclick="setCategory('drama')">Drama</button>
-    <button class="cat-btn" onclick="setCategory('action')">Action</button>
+  <!-- DRAMA POSTER -->
+  <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
+
+  <h3>Episodes</h3>
+
+  <div class="episodes">
+
+    <!-- EPISODE TEMPLATE (EDIT DAILY) -->
+    <div class="ep">
+      <span>Episode 1 (Today)</span>
+      <a class="btn" href="YOUR_SMARTLINK_HERE" target="_blank">Watch</a>
+    </div>
+
+    <div class="ep">
+      <span>Episode 2</span>
+      <a class="btn" href="YOUR_SMARTLINK_HERE" target="_blank">Watch</a>
+    </div>
+
+    <div class="ep">
+      <span>Episode 3</span>
+      <a class="btn" href="YOUR_SMARTLINK_HERE" target="_blank">Watch</a>
+    </div>
+
+    <div class="ep">
+      <span>Episode 4 (Add Later)</span>
+      <a class="btn" href="YOUR_SMARTLINK_HERE" target="_blank">Watch</a>
+    </div>
+
+    <div class="ep">
+      <span>Episode 5 (Add Later)</span>
+      <a class="btn" href="YOUR_SMARTLINK_HERE" target="_blank">Watch</a>
+    </div>
+
   </div>
+
 </div>
-
-<!-- GRID -->
-<div class="grid" id="movieGrid"></div>
-
-<!-- PAGINATION -->
-<div class="pagination">
-  <button class="page-btn" onclick="setPage(1)">1</button>
-  <button class="page-btn" onclick="setPage(2)">2</button>
-  <button class="page-btn" onclick="setPage(3)">3</button>
-</div>
-
-<script>
-const smartlink = "https://www.profitablecpmratenetwork.com/m1u9inyw?key=5df91a743298a28a9dfe7f5c4eeb6706";
-
-let category = "all";
-let page = 1;
-
-const movies = [
-  {name:"Peaky Blinders", img:"https://m.media-amazon.com/images/M/MV5B.jpg", cat:"action"},
-  {name:"Money Heist", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
-  {name:"Breaking Bad", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
-  {name:"Dark", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
-  {name:"Vikings", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
-  {name:"Narcos", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
-  {name:"Squid Game", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
-  {name:"The Crown", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
-  {name:"Arrow", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
-  {name:"Lost", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"},
-  {name:"Flash", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"action"},
-  {name:"Prison Break", img:"https://m.media-amazon.com/images/MV5B.jpg", cat:"drama"}
-];
-
-function renderMovies(){
-  let grid = document.getElementById("movieGrid");
-  let search = document.getElementById("searchBox").value.toLowerCase();
-
-  grid.innerHTML = "";
-
-  let filtered = movies.filter(m => {
-    return (category==="all" || m.cat===category) &&
-           m.name.toLowerCase().includes(search);
-  });
-
-  let start = (page-1)*6;
-  let end = start + 6;
-
-  filtered.slice(start,end).forEach(m => {
-    grid.innerHTML += `
-      <div class="card">
-        <img src="${m.img}">
-        <div class="card-content">
-          <div>${m.name}</div>
-          <a class="btn" href="${smartlink}" target="_blank">Watch / Download</a>
-        </div>
-      </div>
-    `;
-  });
-}
-
-function setCategory(cat){
-  category = cat;
-  page = 1;
-  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
-  event.target.classList.add("active");
-  renderMovies();
-}
-
-function setPage(p){
-  page = p;
-  document.querySelectorAll(".page-btn").forEach(b=>b.classList.remove("active"));
-  event.target.classList.add("active");
-  renderMovies();
-}
-
-renderMovies();
-</script>
 
 </body>
 </html>
