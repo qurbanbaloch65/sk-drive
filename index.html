@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>  <!DOCTYPE html>  <html b:css='false' b:defaultwidgetversion='2' b:layoutsversion='3' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>  
+<head>  
+<meta charset='UTF-8'/>  
+<meta content='width=device-width, initial-scale=1.0' name='viewport'/>  
+<title>SK DRIVE</title>  <script src='//pl25372332.passtechusa.com/2c/80/7e/2c807e60058ec40590a88099238383a8.js' type='text/javascript'></script>  <b:skin><![CDATA[  
+*{ margin:0; padding:0; box-sizing:border-box; font-family: Arial; }  
+body{ background:#121212; color:#fff; }  
+.navbar{ padding:15px; background:#1f1f1f; text-align:center; font-weight:bold; color:#e50914; font-size:24px; }  
+.container{ padding:15px; }  
+.grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:10px; }  
+.card{ background:#1f1f1f; border-radius:10px; overflow:hidden; border:1px solid #333; }  
+.card img{ width:100%; height:180px; object-fit:cover; }  
+.card-content{ padding:10px; text-align:center; }  
+.btn{ display:block; background:#e50914; padding:10px; margin-top:8px; text-decoration:none; color:#fff; border-radius:5px; font-weight:bold; }  
+#downloadPage{ display:none; text-align:center; padding:20px; }  
+.movie-img{ width:250px; border-radius:10px; margin-bottom:15px; }  
+.back{ margin-bottom:20px; display:inline-block; background:#444; padding:8px 15px; border-radius:5px; cursor:pointer; }  
+]]></b:skin>
+
+</head>  <body>  
+<b:section id='main' showaddelement='yes'>  
+<b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>  
+<b:includable id='main'>  <div class='navbar'>SK DRIVE</div>  <script src='//pl25372350.passtechusa.com/5c/5f/17/5c5f17849e77b102b415a77038e21782.js' type='text/javascript'></script>  <div class='container' id='homePage'>  
+  <div class='grid'>  
+    <div class='card'>  
+      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlA52gybLs_6aq6paMSt2jaUX3Sj9sUX5wpHfmZtFKKQ&amp;s=10'/>  
+      <div class='card-content'>  
+        <div>DHURANDHAR</div>  
+        <a class='btn' href='#' onclick='openMovie("dhur")'>Download</a>  
+      </div>  
+    </div>  
+    <div class='card'>  
+      <img src='https://m.media-amazon.com/images/M/MV5BNTdlNTNjNjctYTg2MC00NTFlLTliNTctODFiZjZmNWRkYTVlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg'/>  
+      <div class='card-content'>  
+        <div>PEAKY BLINDERS</div>  
+        <a class='btn' href='#' onclick='openMovie("peaky")'>Download</a>  
+      </div>  
+    </div>  
+  </div>  
+</div>  <div id='downloadPage'>  
+  <div class='back' onclick='goBack()'>⬅ Back to Home</div>  
+  <img class='movie-img' id='movieImg'/>  
+  <h2 id='movieTitle' style='margin-bottom:20px;'></h2>  
+  <p style='color:#aaa; margin-bottom:10px;'>Select Quality to Download:</p>  
+  <a class='btn' href='https://highrevenuegate.com/v8t4u9v8y?key=7f7813a86c878939b4f620f4f9f6975a' target='_blank'>Download 480p</a>  
+  <a class='btn' href='https://highrevenuegate.com/v8t4u9v8y?key=7f7813a86c878939b4f620f4f9f6975a' target='_blank'>Download 720p</a>  
+  <a class='btn' href='https://highrevenuegate.com/v8t4u9v8y?key=7f7813a86c878939b4f620f4f9f6975a' target='_blank'>Download 1080p</a>  
+</div>  </b:includable>
+</b:widget>
+</b:section>
+
+<script type='text/javascript'>  
+//<![CDATA[  
+function openMovie(movie){  
+  document.getElementById("homePage").style.display="none";  
+  document.getElementById("downloadPage").style.display="block";  
+  window.scrollTo(0,0);  
+  if(movie === "dhur"){  
+    document.getElementById("movieTitle").innerText="DHURANDHAR THE REVENGE";  
+    document.getElementById("movieImg").src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlA52gybLs_6aq6paMSt2jaUX3Sj9sUX5wpHfmZtFKKQ&s=10";  
+  }  
+  if(movie === "peaky"){  
+    document.getElementById("movieTitle").innerText="Peaky Blinders";  
+    document.getElementById("movieImg").src="https://m.media-amazon.com/images/M/MV5BNTdlNTNjNjctYTg2MC00NTFlLTliNTctODFiZjZmNWRkYTVlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg";  
+  }  
+}  
+function goBack(){  
+  document.getElementById("homePage").style.display="block";  
+  document.getElementById("downloadPage").style.display="none";  
+}  
+//]]>  
+</script>  </body>  
+</html> 
