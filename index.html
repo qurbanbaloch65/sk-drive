@@ -99,6 +99,19 @@ document.body.style.userSelect = "none";
 </script>
 
 <script>
+// 🔥 AD + REDIRECT SYSTEM
+function openAd(link){
+  // 👉 yahan apna ad link dalo (direct link ya shortlink)
+  window.open("https://your-ad-link.com", "_blank");
+
+  // 👉 1 sec baad original video open
+  setTimeout(() => {
+    window.open(link, "_blank");
+  }, 1000);
+}
+</script>
+
+<script>
 const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
 async function loadEpisodes(){
@@ -113,11 +126,22 @@ async function loadEpisodes(){
       box.innerHTML += `
         <div class="ep">
           <span>${ep.Name}</span>
-          <a class="btn" href="${ep.Link}" target="_blank">Watch</a>
+          <a class="btn" href="#" onclick="openAd('${ep.Link}')">Watch</a>
         </div>
       `;
     });
 
+  } catch(err){
+    console.log("Error loading sheet", err);
+    document.getElementById("episodeList").innerHTML = "Error loading episodes.";
+  }
+}
+
+loadEpisodes();
+</script>
+
+</body>
+</html>
   } catch(err){
     console.log("Error loading sheet", err);
     document.getElementById("episodeList").innerHTML = "Error loading episodes.";
