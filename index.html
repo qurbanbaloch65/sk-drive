@@ -3,13 +3,26 @@
 <head>
     <meta charset='UTF-8'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-    <title>Tum Se Tum Tak - Drama</title>
+    <title>Tum Se Tum Tak - Protected</title>
     <style>
         body{ margin:0; font-family:Arial; background:#000; color:#fff; text-align:center; }
         .header{ background:#111; padding:20px; border-bottom:2px solid #b026ff; }
-        .title{ font-size:24px; font-weight:bold; color:#b026ff; }
         .container{ padding:15px; }
-        .poster{ width:100%; max-width:500px; border-radius:15px; margin-bottom:20px; }
+        .poster{ width:100%; max-width:500px; border-radius:15px; }
+        
+        /* Timer Styling */
+        #timer-box { 
+            background: rgba(176, 38, 255, 0.1); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border: 2px dashed #b026ff;
+            border-radius: 10px;
+        }
+        #countdown { font-size: 30px; font-weight: bold; color: #b026ff; }
+
+        /* Watch Buttons (Shuru mein chupe rahenge) */
+        #episodeList { display: none; }
+
         .ep-box{ background:#1a1a1a; padding:15px; margin-bottom:10px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; }
         .btn{ background:#b026ff; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; }
     </style>
@@ -17,42 +30,69 @@
 <body>
 
 <div class="header">
-    <div class="title">Tum Se Tum Tak</div>
+    <div class="title" style="font-size:24px; color:#b026ff; font-weight:bold;">Tum Se Tum Tak</div>
 </div>
 
 <div class="container">
     <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
-    
-    <div style="margin:20px 0;">
-        <script async="async" data-cfasync="false" src="https://pl29039702.profitablecpmratenetwork.com/e209b9db9402234027abab47e9b118e1/invoke.js"></script>
-        <div id="container-e209b9db9402234027abab47e9b118e1"></div>
+
+    <div id="timer-box">
+        <p>Video Link tayyar ho raha hai...</p>
+        <div id="countdown">25</div>
+        <p>Ad ko 25 second tak dekhein</p>
+        
+        <div style="margin-top:15px;">
+            <script async="async" data-cfasync="false" src="https://pl29039702.profitablecpmratenetwork.com/e209b9db9402234027abab47e9b118e1/invoke.js"></script>
+            <div id="container-e209b9db9402234027abab47e9b118e1"></div>
+        </div>
     </div>
 
-    <h3 style="text-align:left; border-left:4px solid #b026ff; padding-left:10px;">Episodes List</h3>
-    <div id="episodeList">Loading Episodes...</div>
+    <div id="episodeList">
+        <h3 style="text-align:left;">Episodes List</h3>
+        <div id="linksContainer">Loading...</div>
+    </div>
 </div>
 
 <script>
+    // 1. TIMER LOGIC
+    let timeLeft = 25; 
+    let timerElement = document.getElementById('countdown');
+    let timerBox = document.getElementById('timer-box');
+    let episodeList = document.getElementById('episodeList');
+
+    let downloadTimer = setInterval(function(){
+        if(timeLeft <= 0){
+            clearInterval(downloadTimer);
+            timerBox.style.display = "none"; // Timer aur Ad gayab
+            episodeList.style.display = "block"; // Episodes zahir
+        } else {
+            timerElement.innerHTML = timeLeft;
+        }
+        timeLeft -= 1;
+    }, 1000);
+
+    // 2. DATA LOADING
     const SHEET_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
     async function loadEpisodes() {
         try {
             let res = await fetch(SHEET_URL);
             let data = await res.json();
-            let box = document.getElementById("episodeList");
-            box.innerHTML = "";
+            let container = document.getElementById("linksContainer");
+            container.innerHTML = "";
             data.forEach(ep => {
-                box.innerHTML += `
+                container.innerHTML += `
                     <div class="ep-box">
                         <span>${ep.Name}</span>
                         <a href="${ep.Link}" class="btn" target="_blank">Watch Now</a>
                     </div>`;
             });
         } catch (err) {
-            document.getElementById("episodeList").innerHTML = "Error: Check Sheet Headers!";
+            document.getElementById("linksContainer").innerHTML = "Error loading episodes.";
         }
     }
     loadEpisodes();
 </script>
+
 </body>
 </html>
