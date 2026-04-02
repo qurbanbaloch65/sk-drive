@@ -3,21 +3,15 @@
 <head>
     <meta charset='UTF-8'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-    <title>Tum Se Tum Tak - MHB Tool</title>
-
+    <title>Tum Se Tum Tak - Drama</title>
     <style>
-        body{ margin:0; font-family:Arial, sans-serif; background:#000; color:#fff; text-align:center; }
+        body{ margin:0; font-family:Arial; background:#000; color:#fff; text-align:center; }
         .header{ background:#111; padding:20px; border-bottom:2px solid #b026ff; }
         .title{ font-size:24px; font-weight:bold; color:#b026ff; }
         .container{ padding:15px; }
-        .poster{ width:100%; max-width:500px; border-radius:15px; margin-bottom:20px; box-shadow: 0 4px 15px rgba(176, 38, 255, 0.3); }
-        
-        /* Ad Space Styling */
-        .ad-container { margin: 20px auto; min-height: 100px; width: 100%; max-width: 728px; overflow: hidden; }
-        
+        .poster{ width:100%; max-width:500px; border-radius:15px; margin-bottom:20px; }
         .ep-box{ background:#1a1a1a; padding:15px; margin-bottom:10px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; }
-        .btn{ background:#b026ff; color:#fff; padding:8px 18px; border-radius:5px; text-decoration:none; font-weight:bold; font-size: 14px; }
-        h3{ border-left: 4px solid #b026ff; padding-left: 10px; text-align: left; margin-top: 30px; }
+        .btn{ background:#b026ff; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; }
     </style>
 </head>
 <body>
@@ -27,81 +21,38 @@
 </div>
 
 <div class="container">
-    <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png" alt="Poster"/>
+    <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
     
-    <div class="ad-container">
+    <div style="margin:20px 0;">
         <script async="async" data-cfasync="false" src="https://pl29039702.profitablecpmratenetwork.com/e209b9db9402234027abab47e9b118e1/invoke.js"></script>
         <div id="container-e209b9db9402234027abab47e9b118e1"></div>
     </div>
 
-    <h3>Episodes List</h3>
+    <h3 style="text-align:left; border-left:4px solid #b026ff; padding-left:10px;">Episodes List</h3>
     <div id="episodeList">Loading Episodes...</div>
 </div>
 
 <script>
-    // GOOGLE SHEET DATA FETCH
-    const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
+    const SHEET_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
     async function loadEpisodes() {
         try {
-            let res = await fetch(API_URL);
+            let res = await fetch(SHEET_URL);
             let data = await res.json();
-            let container = document.getElementById("episodeList");
-            container.innerHTML = "";
-
-            data.forEach(row => {
-                // Ensure Sheet columns are named "Name" and "Link"
-                container.innerHTML += `
+            let box = document.getElementById("episodeList");
+            box.innerHTML = "";
+            data.forEach(ep => {
+                box.innerHTML += `
                     <div class="ep-box">
-                        <span>${row.Name}</span>
-                        <a href="${row.Link}" class="btn" target="_blank">Watch</a>
+                        <span>${ep.Name}</span>
+                        <a href="${ep.Link}" class="btn" target="_blank">Watch Now</a>
                     </div>`;
             });
-        } catch (error) {
-            document.getElementById("episodeList").innerHTML = "Error: Please check Column Names in Google Sheet!";
+        } catch (err) {
+            document.getElementById("episodeList").innerHTML = "Error: Check Sheet Headers!";
         }
     }
     loadEpisodes();
 </script>
-
-</body>
-</html>
-    let data = await res.json();
-
-    let box = document.getElementById("episodeList");
-    box.innerHTML = "";
-
-    data.forEach(ep => {
-      box.innerHTML += `
-        <div class="ep">
-          <span>${ep.Name}</span>
-          <a class="btn" href="#" onclick="openAd('${ep.Link}')">Watch</a>
-        </div>
-      `;
-    });
-
-  } catch(err){
-    console.log("Error loading sheet", err);
-    document.getElementById("episodeList").innerHTML = "Error loading episodes.";
-  }
-}
-
-loadEpisodes();
-</script>
-
-</body>
-</html>
-  } catch(err){
-    console.log("Error loading sheet", err);
-    document.getElementById("episodeList").innerHTML = "Error loading episodes.";
-  }
-}
-
-loadEpisodes();
-</script>
-
-<!-- ✅ AD SCRIPT (sirf 1 add kiya) -->
-<script src="https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js"></script>
-
 </body>
 </html>
