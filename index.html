@@ -1,122 +1,71 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml'>
-
+<html>
 <head>
-<meta charset='UTF-8'/>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-<title>Tum Se Tum Tak - Drama</title>
+    <meta charset='UTF-8'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <title>Tum Se Tum Tak - MHB Tool</title>
 
-<style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#000000;
-  color:white;
-}
-
-.header{
-  background:#0a0a0a;
-  padding:15px;
-  border-bottom:1px solid #1f1f1f;
-}
-
-.title{
-  font-size:22px;
-  font-weight:bold;
-  color:#b026ff;
-}
-
-.container{
-  padding:10px;
-}
-
-.poster{
-  width:100%;
-  border-radius:12px;
-}
-
-.episodes{
-  margin-top:15px;
-}
-
-.ep{
-  background:#111;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:8px;
-  border:1px solid #2a2a2a;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.btn{
-  background:#b026ff;
-  color:white;
-  padding:6px 10px;
-  border-radius:6px;
-  text-decoration:none;
-  font-size:13px;
-}
-</style>
-
+    <style>
+        body{ margin:0; font-family:Arial, sans-serif; background:#000; color:#fff; text-align:center; }
+        .header{ background:#111; padding:20px; border-bottom:2px solid #b026ff; }
+        .title{ font-size:24px; font-weight:bold; color:#b026ff; }
+        .container{ padding:15px; }
+        .poster{ width:100%; max-width:500px; border-radius:15px; margin-bottom:20px; box-shadow: 0 4px 15px rgba(176, 38, 255, 0.3); }
+        
+        /* Ad Space Styling */
+        .ad-container { margin: 20px auto; min-height: 100px; width: 100%; max-width: 728px; overflow: hidden; }
+        
+        .ep-box{ background:#1a1a1a; padding:15px; margin-bottom:10px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; }
+        .btn{ background:#b026ff; color:#fff; padding:8px 18px; border-radius:5px; text-decoration:none; font-weight:bold; font-size: 14px; }
+        h3{ border-left: 4px solid #b026ff; padding-left: 10px; text-align: left; margin-top: 30px; }
+    </style>
 </head>
-
 <body>
 
 <div class="header">
-  <div class="title">Tum Se Tum Tak</div>
+    <div class="title">Tum Se Tum Tak</div>
 </div>
 
 <div class="container">
+    <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png" alt="Poster"/>
+    
+    <div class="ad-container">
+        <script async="async" data-cfasync="false" src="https://pl29039702.profitablecpmratenetwork.com/e209b9db9402234027abab47e9b118e1/invoke.js"></script>
+        <div id="container-e209b9db9402234027abab47e9b118e1"></div>
+    </div>
 
-  <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
-
-  <h3>Episodes</h3>
-
-  <div class="episodes" id="episodeList">
-    <p style="text-align:center;">Loading Episodes...</p>
-  </div>
-
+    <h3>Episodes List</h3>
+    <div id="episodeList">Loading Episodes...</div>
 </div>
 
 <script>
-document.addEventListener("contextmenu", e => e.preventDefault());
+    // GOOGLE SHEET DATA FETCH
+    const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
-document.addEventListener("keydown", function(e){
-  if (e.ctrlKey && (
-      e.key === "u" ||
-      e.key === "s" ||
-      e.key === "i" ||
-      e.key === "j"
-  )){
-    e.preventDefault();
-  }
-});
+    async function loadEpisodes() {
+        try {
+            let res = await fetch(API_URL);
+            let data = await res.json();
+            let container = document.getElementById("episodeList");
+            container.innerHTML = "";
 
-document.body.style.userSelect = "none";
+            data.forEach(row => {
+                // Ensure Sheet columns are named "Name" and "Link"
+                container.innerHTML += `
+                    <div class="ep-box">
+                        <span>${row.Name}</span>
+                        <a href="${row.Link}" class="btn" target="_blank">Watch</a>
+                    </div>`;
+            });
+        } catch (error) {
+            document.getElementById("episodeList").innerHTML = "Error: Please check Column Names in Google Sheet!";
+        }
+    }
+    loadEpisodes();
 </script>
 
-<script>
-// 🔥 AD + REDIRECT SYSTEM
-function openAd(link){
-  // 👉 yahan apna ad link dalo (direct link ya shortlink)
-  window.open("https://your-ad-link.com", "_blank");
-
-  // 👉 1 sec baad original video open
-  setTimeout(() => {
-    window.open(link, "_blank");
-  }, 1000);
-}
-</script>
-
-<script>
-const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
-
-async function loadEpisodes(){
-  try {
-    let res = await fetch(API_URL);
+</body>
+</html>
     let data = await res.json();
 
     let box = document.getElementById("episodeList");
