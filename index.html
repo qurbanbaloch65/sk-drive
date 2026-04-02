@@ -8,15 +8,59 @@
 <title>Tum Se Tum Tak - Drama</title>
 
 <style>
-body{ margin:0; font-family:Arial; background:#000000; color:white; }
-.header{ background:#0a0a0a; padding:15px; border-bottom:1px solid #1f1f1f; }
-.title{ font-size:22px; font-weight:bold; color:#b026ff; }
-.container{ padding:10px; }
-.poster{ width:100%; border-radius:12px; }
-.episodes{ margin-top:15px; }
-.ep{ background:#111; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #2a2a2a; display:flex; justify-content:space-between; align-items:center; }
-.btn{ background:#b026ff; color:white; padding:6px 10px; border-radius:6px; text-decoration:none; font-size:13px; }
+body{
+  margin:0;
+  font-family:Arial;
+  background:#000000;
+  color:white;
+}
+
+.header{
+  background:#0a0a0a;
+  padding:15px;
+  border-bottom:1px solid #1f1f1f;
+}
+
+.title{
+  font-size:22px;
+  font-weight:bold;
+  color:#b026ff;
+}
+
+.container{
+  padding:10px;
+}
+
+.poster{
+  width:100%;
+  border-radius:12px;
+}
+
+.episodes{
+  margin-top:15px;
+}
+
+.ep{
+  background:#111;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:1px solid #2a2a2a;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.btn{
+  background:#b026ff;
+  color:white;
+  padding:6px 10px;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:13px;
+}
 </style>
+
 </head>
 
 <body>
@@ -26,34 +70,45 @@ body{ margin:0; font-family:Arial; background:#000000; color:white; }
 </div>
 
 <div class="container">
+
   <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
+
   <h3>Episodes</h3>
+
   <div class="episodes" id="episodeList">
     <p style="text-align:center;">Loading Episodes...</p>
   </div>
+
 </div>
 
 <script>
-// COPY PROTECTION
 document.addEventListener("contextmenu", e => e.preventDefault());
+
 document.addEventListener("keydown", function(e){
-  if (e.ctrlKey && (e.key === "u" || e.key === "s" || e.key === "i" || e.key === "j")){
+  if (e.ctrlKey && (
+      e.key === "u" ||
+      e.key === "s" ||
+      e.key === "i" ||
+      e.key === "j"
+  )){
     e.preventDefault();
   }
 });
+
 document.body.style.userSelect = "none";
 </script>
 
 <script>
-// GOOGLE SHEET SYSTEM
 const API_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
 async function loadEpisodes(){
   try {
     let res = await fetch(API_URL);
     let data = await res.json();
+
     let box = document.getElementById("episodeList");
     box.innerHTML = "";
+
     data.forEach(ep => {
       box.innerHTML += `
         <div class="ep">
@@ -62,15 +117,18 @@ async function loadEpisodes(){
         </div>
       `;
     });
+
   } catch(err){
     console.log("Error loading sheet", err);
     document.getElementById("episodeList").innerHTML = "Error loading episodes.";
   }
 }
+
 loadEpisodes();
 </script>
 
-<script type='text/javascript' src='//pl29034114.profitablecpmratenetwork.com/bc/08/ca/bc08ca4ae949b6380cf7631cd94cdc6c.js'></script>
+<!-- ✅ AD SCRIPT (sirf 1 add kiya) -->
+<script src="https://pl29034115.profitablecpmratenetwork.com/a7/30/8f/a7308f7ba9a0de54ead51fb21cb5de72.js"></script>
 
 </body>
 </html>
