@@ -1,97 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="ur">
 <head>
-    <meta charset='UTF-8'/>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-    <title>Tum Se Tum Tak - Protected</title>
+    <meta charset='UTF-8'/><meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <title>Vibessoga - Drama Portal</title>
     <style>
-        body{ margin:0; font-family:Arial; background:#000; color:#fff; text-align:center; }
-        .header{ background:#111; padding:20px; border-bottom:2px solid #b026ff; }
-        .container{ padding:15px; }
-        .poster{ width:100%; max-width:500px; border-radius:15px; }
+        body{ margin:0; font-family:sans-serif; background:#000; color:#fff; text-align:center; overflow-x: hidden; }
+        .header{ background:#111; padding:15px; border-bottom:2px solid #b026ff; font-size:26px; color:#b026ff; font-weight:bold; letter-spacing: 1px; }
         
-        /* Timer Styling */
-        #timer-box { 
-            background: rgba(176, 38, 255, 0.1); 
-            padding: 20px; 
-            margin: 20px 0; 
-            border: 2px dashed #b026ff;
-            border-radius: 10px;
-        }
-        #countdown { font-size: 30px; font-weight: bold; color: #b026ff; }
-
-        /* Watch Buttons (Shuru mein chupe rahenge) */
-        #episodeList { display: none; }
-
-        .ep-box{ background:#1a1a1a; padding:15px; margin-bottom:10px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; }
-        .btn{ background:#b026ff; color:#fff; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; }
+        /* Ad Box Styling */
+        #ad-box { background:#1a1a1a; padding:20px; margin:15px; border:1px solid #333; border-radius:12px; position: relative; min-height: 300px; }
+        #timer-wrapper { margin-bottom: 15px; }
+        #timer { font-size:40px; color:#b026ff; font-weight: bold; }
+        .ad-label { font-size: 12px; color: #777; margin-bottom: 10px; display: block; }
+        
+        /* Content Styling */
+        #content { display:none; padding:15px; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .section-title { text-align:left; color:#b026ff; margin-left: 10px; border-left: 4px solid #b026ff; padding-left: 10px; }
+        .links-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        
+        .ep-link { background:#1a1a1a; padding:18px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; transition: 0.3s; }
+        .ep-link:hover { border-color: #b026ff; background: #222; }
+        .ep-name { font-size: 16px; font-weight: 500; color: #eee; }
+        
+        .btn { background: linear-gradient(45deg, #b026ff, #7a19b3); color:#fff; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:bold; font-size: 14px; box-shadow: 0 4px 15px rgba(176, 38, 255, 0.3); }
+        
+        .footer { margin-top: 50px; padding: 20px; color: #444; font-size: 12px; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="title" style="font-size:24px; color:#b026ff; font-weight:bold;">Tum Se Tum Tak</div>
-</div>
+<div class="header">VIBESSOGA</div>
 
-<div class="container">
-    <img class="poster" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tumm_Se_Tumm_Tak.png/1280px-Tumm_Se_Tumm_Tak.png"/>
-
-    <div id="timer-box">
-        <p>Video Link tayyar ho raha hai...</p>
-        <div id="countdown">25</div>
-        <p>Ad ko 25 second tak dekhein</p>
-        
-        <div style="margin-top:15px;">
-            <script async="async" data-cfasync="false" src="https://pl29039702.profitablecpmratenetwork.com/e209b9db9402234027abab47e9b118e1/invoke.js"></script>
-            <div id="container-e209b9db9402234027abab47e9b118e1"></div>
+<div id="ad-box">
+    <div id="timer-wrapper">
+        <span class="ad-label">PLEASE WAIT... CONTENT LOADING</span>
+        <div id="timer">30</div>
+    </div>
+    
+    <div id="ad-container">
+        <script async="async" data-cfasync="false" src="https://pl29046543.profitablecpmratenetwork.com/e4623cc5488489ca88c4255902f9e76c/invoke.js"></script>
+        <div id="container-e4623cc5488489ca88c4255902f9e76c"></div>
         </div>
-    </div>
+</div>
 
-    <div id="episodeList">
-        <h3 style="text-align:left;">Episodes List</h3>
-        <div id="linksContainer">Loading...</div>
+<div id="content">
+    <h3 class="section-title">Latest Episodes</h3>
+    <div id="links-container" class="links-grid">
+        <p style="color:#666;">Fetching data from Google Sheets...</p>
     </div>
 </div>
+
+<div class="footer">Powered by MHB Tool Creator</div>
 
 <script>
-    // 1. TIMER LOGIC
-    let timeLeft = 25; 
-    let timerElement = document.getElementById('countdown');
-    let timerBox = document.getElementById('timer-box');
-    let episodeList = document.getElementById('episodeList');
+    // 1. 30-Second Timer Logic
+    let timeLeft = 30;
+    const timerElement = document.getElementById('timer');
+    const adBox = document.getElementById('ad-box');
+    const content = document.getElementById('content');
 
-    let downloadTimer = setInterval(function(){
-        if(timeLeft <= 0){
-            clearInterval(downloadTimer);
-            timerBox.style.display = "none"; // Timer aur Ad gayab
-            episodeList.style.display = "block"; // Episodes zahir
-        } else {
-            timerElement.innerHTML = timeLeft;
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.innerText = timeLeft;
+        if(timeLeft <= 0) {
+            clearInterval(countdown);
+            adBox.style.display = 'none'; // Ad box removed
+            content.style.display = 'block'; // Content revealed
         }
-        timeLeft -= 1;
     }, 1000);
 
-    // 2. DATA LOADING
-    const SHEET_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
+    // 2. Google Sheet Integration
+    // Apki sheet ID ke mutabiq
+    const SHEET_API = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
-    async function loadEpisodes() {
+    async function loadDramaData() {
         try {
-            let res = await fetch(SHEET_URL);
-            let data = await res.json();
-            let container = document.getElementById("linksContainer");
-            container.innerHTML = "";
-            data.forEach(ep => {
-                container.innerHTML += `
-                    <div class="ep-box">
-                        <span>${ep.Name}</span>
-                        <a href="${ep.Link}" class="btn" target="_blank">Watch Now</a>
-                    </div>`;
+            const response = await fetch(SHEET_API);
+            const data = await response.json();
+            const container = document.getElementById('links-container');
+            
+            if (data.length === 0) {
+                container.innerHTML = "<p>No episodes found in sheet.</p>";
+                return;
+            }
+
+            container.innerHTML = ""; // Clear loading text
+            data.forEach(item => {
+                // Ensure columns 'Name' and 'Link' exist in your sheet
+                if(item.Name && item.Link) {
+                    container.innerHTML += `
+                        <div class="ep-link">
+                            <span class="ep-name">${item.Name}</span>
+                            <a href="${item.Link}" class="btn" target="_blank">WATCH NOW</a>
+                        </div>`;
+                }
             });
-        } catch (err) {
-            document.getElementById("linksContainer").innerHTML = "Error loading episodes.";
+        } catch (error) {
+            document.getElementById('links-container').innerText = "Sheet loading error. Check your headers.";
+            console.error("Error:", error);
         }
     }
-    loadEpisodes();
+
+    loadDramaData();
 </script>
 
 </body>
