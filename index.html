@@ -2,31 +2,23 @@
 <html lang="ur">
 <head>
     <meta charset='UTF-8'/><meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-    <title>Vibessoga - Drama Portal</title>
+    <title>Vibessoga - Automated Portal</title>
     <style>
-        body{ margin:0; font-family:sans-serif; background:#000; color:#fff; text-align:center; overflow-x: hidden; }
-        .header{ background:#111; padding:15px; border-bottom:2px solid #b026ff; font-size:26px; color:#b026ff; font-weight:bold; letter-spacing: 1px; }
+        body{ margin:0; font-family:sans-serif; background:#000; color:#fff; text-align:center; }
+        .header{ background:#111; padding:15px; border-bottom:2px solid #b026ff; font-size:24px; color:#b026ff; font-weight:bold; }
         
         /* Ad Box Styling */
-        #ad-box { background:#1a1a1a; padding:20px; margin:15px; border:1px solid #333; border-radius:12px; position: relative; min-height: 300px; }
-        #timer-wrapper { margin-bottom: 15px; }
-        #timer { font-size:40px; color:#b026ff; font-weight: bold; }
-        .ad-label { font-size: 12px; color: #777; margin-bottom: 10px; display: block; }
+        #ad-box { background:#1a1a1a; padding:20px; margin:15px; border:1px solid #333; border-radius:12px; min-height: 250px; }
+        #timer { font-size:45px; color:#b026ff; font-weight: bold; margin: 10px 0; }
+        .wait-text { font-size: 14px; color: #888; }
         
-        /* Content Styling */
-        #content { display:none; padding:15px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* Content Styling (Sheet Data) */
+        #content { display:none; padding:15px; }
+        .links-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        .ep-link { background:#1a1a1a; padding:15px; border-radius:8px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; }
+        .btn { background:#b026ff; color:#fff; padding:8px 18px; border-radius:5px; text-decoration:none; font-weight:bold; box-shadow: 0 4px 10px rgba(176,38,255,0.2); }
         
-        .section-title { text-align:left; color:#b026ff; margin-left: 10px; border-left: 4px solid #b026ff; padding-left: 10px; }
-        .links-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-        
-        .ep-link { background:#1a1a1a; padding:18px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; border:1px solid #333; transition: 0.3s; }
-        .ep-link:hover { border-color: #b026ff; background: #222; }
-        .ep-name { font-size: 16px; font-weight: 500; color: #eee; }
-        
-        .btn { background: linear-gradient(45deg, #b026ff, #7a19b3); color:#fff; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:bold; font-size: 14px; box-shadow: 0 4px 15px rgba(176, 38, 255, 0.3); }
-        
-        .footer { margin-top: 50px; padding: 20px; color: #444; font-size: 12px; }
+        .footer { margin-top: 40px; padding: 20px; color: #333; font-size: 10px; }
     </style>
 </head>
 <body>
@@ -34,28 +26,26 @@
 <div class="header">VIBESSOGA</div>
 
 <div id="ad-box">
-    <div id="timer-wrapper">
-        <span class="ad-label">PLEASE WAIT... CONTENT LOADING</span>
-        <div id="timer">30</div>
-    </div>
+    <span class="wait-text">AD CLOSING IN...</span>
+    <div id="timer">30</div>
     
-    <div id="ad-container">
+    <div id="ad-unit">
         <script async="async" data-cfasync="false" src="https://pl29046543.profitablecpmratenetwork.com/e4623cc5488489ca88c4255902f9e76c/invoke.js"></script>
         <div id="container-e4623cc5488489ca88c4255902f9e76c"></div>
         </div>
 </div>
 
 <div id="content">
-    <h3 class="section-title">Latest Episodes</h3>
+    <h3 style="text-align:left; color:#b026ff; margin-left:10px;">Latest Episodes</h3>
     <div id="links-container" class="links-grid">
-        <p style="color:#666;">Fetching data from Google Sheets...</p>
+        Loading Episodes from Google Sheet...
     </div>
 </div>
 
-<div class="footer">Powered by MHB Tool Creator</div>
+<div class="footer">MHB TOOL CREATOR</div>
 
 <script>
-    // 1. 30-Second Timer Logic
+    // TIMER LOGIC
     let timeLeft = 30;
     const timerElement = document.getElementById('timer');
     const adBox = document.getElementById('ad-box');
@@ -66,44 +56,38 @@
         timerElement.innerText = timeLeft;
         if(timeLeft <= 0) {
             clearInterval(countdown);
-            adBox.style.display = 'none'; // Ad box removed
-            content.style.display = 'block'; // Content revealed
+            adBox.style.display = 'none'; // Ad box gayab
+            content.style.display = 'block'; // Sheet data show
         }
     }, 1000);
 
-    // 2. Google Sheet Integration
-    // Apki sheet ID ke mutabiq
-    const SHEET_API = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
+    // GOOGLE SHEET LOGIC (Automated)
+    // Apki Sheet ID: 1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow
+    const SHEET_URL = "https://opensheet.elk.sh/1HvEUUOBzmDi-sEK4UOg1DQTnjtP8RUiZGfJHtq5fZow/Sheet1";
 
-    async function loadDramaData() {
+    async function fetchSheetData() {
         try {
-            const response = await fetch(SHEET_API);
+            const response = await fetch(SHEET_URL);
             const data = await response.json();
             const container = document.getElementById('links-container');
-            
-            if (data.length === 0) {
-                container.innerHTML = "<p>No episodes found in sheet.</p>";
-                return;
-            }
-
             container.innerHTML = ""; // Clear loading text
-            data.forEach(item => {
-                // Ensure columns 'Name' and 'Link' exist in your sheet
-                if(item.Name && item.Link) {
+
+            data.forEach(row => {
+                // Sheet mein 'Name' aur 'Link' column hona lazmi hai
+                if(row.Name && row.Link) {
                     container.innerHTML += `
                         <div class="ep-link">
-                            <span class="ep-name">${item.Name}</span>
-                            <a href="${item.Link}" class="btn" target="_blank">WATCH NOW</a>
+                            <span>${row.Name}</span>
+                            <a href="${row.Link}" class="btn" target="_blank">WATCH NOW</a>
                         </div>`;
                 }
             });
-        } catch (error) {
-            document.getElementById('links-container').innerText = "Sheet loading error. Check your headers.";
-            console.error("Error:", error);
+        } catch (err) {
+            document.getElementById('links-container').innerHTML = "Sheet Connect Nahi Ho Rahi. Share Settings Check Karein.";
         }
     }
 
-    loadDramaData();
+    fetchSheetData();
 </script>
 
 </body>
